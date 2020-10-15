@@ -1,0 +1,20 @@
+export const colors = {
+  brandGradient: ['#29b6d1', '#00c7c7'],
+  blue: '#15c3d6',
+  yellow: '#ffd665',
+  green: '#37c77f',
+  pink: '#ff669d',
+  lightGreen: '#edfff6',
+  lightBlue: '#d1edf2',
+  lightPink: '#ffe4ee',
+  title1: '#0089a5',
+  title2: '#4d6f80',
+  text1: '#5c8599',
+  text2: '#8fa7b2',
+  text3: '#fff',
+  textInput: '#f5f8fa',
+  shape1: '#fff',
+  shape2: '#f7f9fc',
+  dividerLine: '#d3e2e5',
+  background: '#ebf2f5'
+};
