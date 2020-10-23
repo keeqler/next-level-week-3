@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 
-import { ButtonWithIconLink } from '@/components/ButtonWithIcon';
+import { ButtonLink } from '@/components/Button';
 import { colors } from '@/colors';
 
 export const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background: linear-gradient(
-    330deg,
-    ${colors.brandGradient[0]} 0%,
-    ${colors.brandGradient[1]} 100%
-  );
+  background: var(--brand-gradient);
 `;
 
 export const Container = styled.main`
@@ -90,11 +86,20 @@ export const IntroText = styled.span`
   }
 `;
 
-export const AccessPlatformButton = styled(ButtonWithIconLink)`
+export const AccessPlatformButton = styled(ButtonLink)`
   width: 100%;
   max-width: 320px;
   height: 68px;
   margin-top: 40px;
+
+  :hover {
+    color: ${colors.blue};
+    background: #96feff;
+
+    svg {
+      color: ${colors.blue};
+    }
+  }
 
   @media screen and (max-width: 768px) {
     height: 60px;

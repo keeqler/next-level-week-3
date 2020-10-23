@@ -13,8 +13,11 @@ export const colors = {
   text2: '#8fa7b2',
   text3: '#fff',
   textInput: '#f5f8fa',
+  yesNoButton: '#f5f8fa',
   shape1: '#fff',
   shape2: '#f7f9fc',
-  dividerLine: '#d3e2e5',
-  background: '#ebf2f5'
+  mapMarkerPopup: 'rgba(255, 255, 255, 0.8)',
+  lines: '#d3e2e5',
+  background1: '#ebf2f5',
+  background2: '#fff'
 };

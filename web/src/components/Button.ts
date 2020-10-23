@@ -22,21 +22,12 @@ const style = css`
     color: #8d734b;
     transition: 300ms all;
   }
-
-  :hover {
-    color: ${colors.blue};
-    background: #96feff;
-
-    svg {
-      color: ${colors.blue};
-    }
-  }
 `;
 
-export const ButtonWithIconLink = styled(Link)`
+export const ButtonLink = styled(Link)`
   ${style}
 `;
 
-export const ButtonWithIcon = styled.button`
+export const Button = styled.button`
   ${style}
 `;

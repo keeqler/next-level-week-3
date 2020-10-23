@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 import { colors } from '@/colors';
-import { ButtonWithIcon, ButtonWithIconLink } from '@/components/ButtonWithIcon';
+import { Button, ButtonLink } from '@/components/Button';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100vw;
@@ -16,16 +17,12 @@ export const Container = styled.div`
     height: 100%;
     padding: 0 20px;
     display: flex;
-    background: linear-gradient(
-      330deg,
-      ${colors.brandGradient[0]} 0%,
-      ${colors.brandGradient[1]} 100%
-    );
+    background: var(--brand-gradient);
 
     @media screen and (max-width: 800px) {
       width: 100%;
       max-width: unset;
-      z-index: 2;
+      z-index: 500;
     }
   }
 `;
@@ -61,8 +58,17 @@ export const LowerText = styled.span`
   color: ${colors.text3};
 `;
 
-export const SeeMapButton = styled(ButtonWithIcon)`
+export const SeeMapButton = styled(Button)`
   display: none;
+
+  :hover {
+    color: ${colors.blue};
+    background: #96feff;
+
+    svg {
+      color: ${colors.blue};
+    }
+  }
 
   @media screen and (max-width: 800px) {
     width: 100%;
@@ -79,9 +85,39 @@ export const SeeMapButton = styled(ButtonWithIcon)`
   }
 `;
 
-export const MapContainer = styled.div`
+export const MapWrapper = styled.div`
   width: 100%;
   height: 100vh;
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+
+    .map-popup {
+      .leaflet-popup-content-wrapper {
+        display: flex;
+        box-shadow: none;
+        border-radius: 28px;
+        background: ${colors.mapMarkerPopup};
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+
+        .leaflet-popup-content {
+          width: 260px;
+          height: 50px;
+          padding: 0 20px;
+          margin: 0;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .leaflet-popup-tip-container {
+        display: none;
+      }
+    }
+  }
 
   @media screen and (max-width: 800px) {
     display: ${({ showMap }: { showMap: boolean }) => (showMap ? 'block' : 'none')};
@@ -90,10 +126,34 @@ export const MapContainer = styled.div`
   }
 `;
 
-export const AddOrphanageButton = styled(ButtonWithIconLink)`
+export const MapPopupOrphanageName = styled.span`
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 16px;
+  color: ${colors.title1};
+  font-weight: 800;
+`;
+
+export const MapPopupButton = styled(Link)`
+  width: 40px;
+  height: 40px;
+  margin-left: 4px;
+  display: flex;
+  border-radius: 12px;
+  background: ${colors.blue};
+
+  svg {
+    margin: auto;
+    color: ${colors.text3};
+  }
+`;
+
+export const AddOrphanageButton = styled(ButtonLink)`
   width: 280px;
   height: 60px;
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   right: 60px;
   font-size: 22px;
@@ -109,6 +169,7 @@ export const AddOrphanageButton = styled(ButtonWithIconLink)`
 
   :hover {
     color: #17d6eb;
+    background: #96feff;
 
     svg {
       color: #17d6eb;
@@ -118,6 +179,7 @@ export const AddOrphanageButton = styled(ButtonWithIconLink)`
   @media screen and (max-width: 800px) {
     width: 100%;
     max-width: 280px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
   }
