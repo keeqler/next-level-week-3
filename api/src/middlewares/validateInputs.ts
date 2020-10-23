@@ -6,14 +6,14 @@ type Schemas = {
   params?: Yup.ObjectSchema;
   query?: Yup.ObjectSchema;
 };
-type Inputs = 'body' | 'query' | 'params';
 
 export function validateInputs(schemas: Schemas) {
   return async (request: Request, response: Response, next: NextFunction) => {
     for (const input of Object.keys(schemas)) {
-      await (schemas[input as Inputs] as Yup.ObjectSchema).validate(request[input as Inputs], {
-        abortEarly: false
-      });
+      await (schemas[input as keyof Schemas] as Yup.ObjectSchema).validate(
+        request[input as keyof Schemas],
+        { abortEarly: false }
+      );
     }
 
     next();

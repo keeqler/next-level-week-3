@@ -7,9 +7,14 @@ import fs from 'fs';
 
 import { Orphanage } from '@/entities/Orphanage';
 import { OrphanagesView } from '@/views/OrphanagesView';
+import { HttpError } from '@/errors';
 
 export const OrphanageController = {
   async store(request: Request, response: Response) {
+    if (!request.files.length) {
+      throw new HttpError(400, 'At least one file must be uploaded');
+    }
+
     const orphanagesRepository = getRepository(Orphanage);
 
     const {
