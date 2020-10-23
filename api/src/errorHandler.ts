@@ -1,8 +1,21 @@
+import util from 'util';
+import fs from 'fs';
 import { ErrorRequestHandler } from 'express';
 import { ValidationError } from 'yup';
+import {} from 'multer';
+
+async function deleteUploadedFiles(files: Express.Multer.File[]) {
+  for (const file of files) {
+    await util.promisify(fs.unlink)(file.path);
+  }
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const errorHandler: ErrorRequestHandler = (error, request, response, next) => {
+export const errorHandler: ErrorRequestHandler = async (error, request, response, next) => {
+  if (request.files) {
+    await deleteUploadedFiles(request.files as Express.Multer.File[]);
+  }
+
   if (error instanceof ValidationError) {
     const errors: Record<string, string[]> = {};
 
@@ -12,8 +25,6 @@ export const errorHandler: ErrorRequestHandler = (error, request, response, next
 
     return response.status(400).send(errors);
   }
-
-  console.error(error);
 
   response.sendStatus(500);
 };
